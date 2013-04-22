@@ -1,0 +1,35 @@
+<h1>Listing positions</h1>
+
+<table>
+  <tr>
+    <th>Job</th>
+    <th>User</th>
+    <th>Company</th>
+    <th>Start date</th>
+    <th>Is current</th>
+    <th>Job title</th>
+    <th>Job summary</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @positions.each do |position| %>
+  <tr>
+    <td><%= position.job_id %></td>
+    <td><%= position.user_id %></td>
+    <td><%= position.company_id %></td>
+    <td><%= position.start_date %></td>
+    <td><%= position.is_current %></td>
+    <td><%= position.job_title %></td>
+    <td><%= position.job_summary %></td>
+    <td><%#= link_to 'Show', position %></td>
+    <td><%#= link_to 'Edit', edit_position_path(position) %></td>
+    <td><%#= link_to 'Destroy', position, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%#= link_to 'New Position', new_position_path %>

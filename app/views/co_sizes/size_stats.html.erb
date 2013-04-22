@@ -1,0 +1,48 @@
+<%= @users_per_cosize %>
+<br>
+<br>
+No. rows in companies table <%= @total %> <br>
+
+<%#Types of company size groups <%= @no_employees %> <br>
+
+
+<% if false %>
+<% CoSize.select("DISTINCT(no_employees)").each do |type| %>
+<%= type.no_employees %>
+<% end %>
+
+
+<br>
+<br>
+Number of people self-employed <%= @count_myself%> <%= number_to_percentage(100*@count_myself.to_f/ @total) %>
+<br>
+<br>
+Number of people in companies of 1-10 employees <%= @count_ten%> <%= number_to_percentage(100*@count_ten.to_f/ @total) %>
+<br>
+<br>
+Number of people in companies of 11-50 employees <%= @count_fifty%> <%= number_to_percentage(100*@count_fifty.to_f/ @total) %>
+<br>
+<br>
+Number of people in companies of 51-200 employees <%= @count_200%> <%= number_to_percentage(100*@count_200.to_f/ @total) %>
+<br>
+<br>
+Number of people in companies of 201-500 employees <%= @count_500%> <%= number_to_percentage(100*@count_500.to_f/ @total) %>
+<br>
+<br>
+Number of people in companies of 501-1000 employees <%= @count_1000%> <%= number_to_percentage(100*@count_1000.to_f/ @total) %>
+<br>
+<br>
+Number of people in companies of 1001-5000 employees <%= @count_5000%> <%= number_to_percentage(100*@count_5000.to_f/ @total) %>
+<br>
+<br>
+Number of people in companies of 5001-10,000 employees <%= @count_10000%> <%= number_to_percentage(100*@count_10000.to_f/ @total) %>
+<br>
+<br>
+Number of people in companies of 10,000+ employees <%= @count_10000plus%> <%= number_to_percentage(100*@count_10000plus.to_f/ @total) %>
+<br>
+<br>
+Number of people with no company size declared <%= @count_none%> <%= number_to_percentage(100*@count_none.to_f/ @total) %>
+<br>
+<br>
+
+<% end %>

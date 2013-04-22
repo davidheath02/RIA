@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @user_industry.user_id %>
+</p>
+
+<p>
+  <b>Industry name:</b>
+  <%= @user_industry.industry_name %>
+</p>
+
+<p>
+  <b>Start date:</b>
+  <%= @user_industry.start_date %>
+</p>
+
+<p>
+  <b>Read at:</b>
+  <%= @user_industry.read_at %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_industry_path(@user_industry) %> |
+<%= link_to 'Back', user_industries_path %>

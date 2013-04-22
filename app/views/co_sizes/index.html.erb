@@ -1,0 +1,27 @@
+<h1>Listing co_sizes</h1>
+
+<table>
+  <tr>
+    <th>Company</th>
+    <th>No employees</th>
+    <th>Read at</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @co_sizes.each do |co_size| %>
+  <tr>
+    <td><%= co_size.company_id %></td>
+    <td><%= co_size.no_employees %></td>
+    <td><%= co_size.read_at %></td>
+    <td><%#= link_to 'Show', co_size %></td>
+    <td><%#= link_to 'Edit', edit_co_size_path(co_size) %></td>
+    <td><%#= link_to 'Destroy', co_size, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%#= link_to 'New Co size', new_co_size_path %>

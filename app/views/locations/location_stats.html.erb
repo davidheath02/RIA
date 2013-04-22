@@ -1,0 +1,20 @@
+<%= @users_per_location %> 
+
+
+
+Total Unique Countries in sample <%= @count_countries %> 
+<br>
+<br>
+Total Unique Cities in sample <%= @count_cities %> 
+<br>
+<br>
+<% Location.select("DISTINCT(country_name)").each do |type| %>
+<%= type.country_name %>
+<br>
+<% end %>
+<br>
+<% Location.select("DISTINCT(country_code)").each do |type| %>
+<%= type.country_code %>
+<br>
+<% end %>
+

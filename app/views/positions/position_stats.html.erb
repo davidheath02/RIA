@@ -1,0 +1,22 @@
+Total number of job positions in sample <%= @total %> 
+<br>
+<br>
+Total number of unique Job Titles <%= @count_job_title %> 
+<br>
+<br>
+Number of CEO's <%= @count_ceo%> <%= number_to_percentage(100*@count_ceo.to_f/ @total) %>
+<br>
+<br>
+Number of CTO's <%= @count_cto%> <%= number_to_percentage(100*@count_cto.to_f/ @total) %>
+<br>
+<br>
+Number of Managers <%= @count_managers%> <%= number_to_percentage(100*@count_managers.to_f/ @total) %>
+<br>
+<br>
+Number of Students <%= @count_students%> <%= number_to_percentage(100*@count_students.to_f/ @total) %>
+<br>
+<br>
+<% Position.select("DISTINCT(job_title)").each do |type| %>
+<%= type.job_title %>
+<br>
+<% end %>

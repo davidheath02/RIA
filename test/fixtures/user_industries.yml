@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  industry_name: MyString
+  start_date: 2013-03-24 21:13:29
+  read_at: 2013-03-24 21:13:29
+
+two:
+  user_id: 1
+  industry_name: MyString
+  start_date: 2013-03-24 21:13:29
+  read_at: 2013-03-24 21:13:29

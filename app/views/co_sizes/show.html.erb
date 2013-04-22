@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Company:</b>
+  <%= @co_size.company_id %>
+</p>
+
+<p>
+  <b>No employees:</b>
+  <%= @co_size.no_employees %>
+</p>
+
+<p>
+  <b>Read at:</b>
+  <%= @co_size.read_at %>
+</p>
+
+
+<%= link_to 'Edit', edit_co_size_path(@co_size) %> |
+<%= link_to 'Back', co_sizes_path %>

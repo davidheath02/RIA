@@ -1,0 +1,33 @@
+<%= form_for(@user_industry) do |f| %>
+  <% if @user_industry.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user_industry.errors.count, "error") %> prohibited this user_industry from being saved:</h2>
+
+      <ul>
+      <% @user_industry.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :industry_name %><br />
+    <%= f.text_field :industry_name %>
+  </div>
+  <div class="field">
+    <%= f.label :start_date %><br />
+    <%= f.datetime_select :start_date %>
+  </div>
+  <div class="field">
+    <%= f.label :read_at %><br />
+    <%= f.datetime_select :read_at %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

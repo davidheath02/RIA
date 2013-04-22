@@ -1,0 +1,21 @@
+<h1>Listing user_industries</h1>
+
+<%= form_tag user_industries_path, :method => 'get', :id => "user_industries_search" do %>
+<p>
+	<%= text_field_tag :search, params[:search] %>
+	<%= submit_tag "Search", :name => nil %>
+</p>
+<% end %>
+
+<div id "user_industries">
+	
+<%= render 'user_industries' %>
+
+</div>
+
+<br />
+
+
+<%# will_paginate @user_industries %>
+
+<%#= link_to 'New User industry', new_user_industry_path %>

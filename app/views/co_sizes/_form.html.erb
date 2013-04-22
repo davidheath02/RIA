@@ -1,0 +1,29 @@
+<%= form_for(@co_size) do |f| %>
+  <% if @co_size.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@co_size.errors.count, "error") %> prohibited this co_size from being saved:</h2>
+
+      <ul>
+      <% @co_size.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :company_id %><br />
+    <%= f.number_field :company_id %>
+  </div>
+  <div class="field">
+    <%= f.label :no_employees %><br />
+    <%= f.text_field :no_employees %>
+  </div>
+  <div class="field">
+    <%= f.label :read_at %><br />
+    <%= f.datetime_select :read_at %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

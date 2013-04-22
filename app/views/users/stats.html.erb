@@ -1,0 +1,7 @@
+Total users in sample <%= @total %> <br>
+Number of users named Michael <%= @count_f %><br>
+Percentage of users named Michael <%= number_to_percentage(100*@count_f.to_f/ @total) %>
+<br>
+<br>
+Number of users with profile set to "Private" <%= @count_private %><br>
+Percentage of users with profile set to "Private" <%= number_to_percentage(100*@count_private.to_f/ @total) %>

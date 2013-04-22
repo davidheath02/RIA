@@ -1,0 +1,2 @@
+module UserIndustriesHelper
+end

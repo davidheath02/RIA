@@ -1,0 +1,23 @@
+<table>
+  <tr>
+    <th>User</th>
+    <th>Industry name</th>
+    <th>Start date</th>
+    <th>Read at</th>
+    <th></th>
+    <th></th>
+	<th></th>
+</tr>
+<%# @user_industries = UserIndustry.all %>
+<% @user_industries.each do |user_industry| %>
+  <tr>
+    <td><%= user_industry.user_id %></td>
+    <td><%= user_industry.industry_name %></td>
+    <td><%= user_industry.start_date %></td>
+    <td><%= user_industry.read_at %></td>
+    <td><%#= link_to 'Show', user_industry %></td>
+    <td><%#= link_to 'Edit', edit_user_industry_path(user_industry) %></td>
+    <td><%#= link_to 'Destroy', user_industry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
