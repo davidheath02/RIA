@@ -1,0 +1,105 @@
+<div id = "drill_content"></div>
+
+<script>
+
+$.getJSON("/locations/map.json", function (json) {
+	
+        var colors = Highcharts.getOptions().colors;
+	var data = [], names = [];
+	
+	for(var i in json) {
+		
+		
+		
+		names.push(i);
+		data.push({
+         	y: json[i],
+            color: colors[0],
+	        drilldown: {
+	            name: 'MSIE versions',
+	            categories: ['MSIE 6.0', 'MSIE 7.0', 'MSIE 8.0', 'MSIE 9.0'],
+	            data: [10.85, 7.35, 33.06, 2.81],
+                color: colors[0]
+	        }
+	    });		
+	};
+    
+        function setChart(name, categories, data, color) {
+			chart.xAxis[0].setCategories(categories, false);
+			chart.series[0].remove(false);
+			chart.addSeries({
+				name: name,
+				data: data,
+				color: color || 'white',
+				drilldown: {
+                        name: 'Top 5 Industries in the Country',
+                        categories: ['Internet', 'Manufacturing'],
+                        data: [2000, 4300],
+                        color: colors[2]
+                    }
+			}, false);
+			chart.redraw();
+        }
+    
+        var chart = $('#drill_content').highcharts({
+            chart: {
+                type: 'column'
+            },
+            xAxis: {
+                categories: names
+            },
+            yAxis: {
+                title: {
+                    text: 'Total Users from LinkedIn Crawler (thousands)'
+                }
+            },
+            plotOptions: {
+                column: {
+                    cursor: 'pointer',
+                    point: {
+                        events: {
+                            click: function() {
+                                var drilldown = this.drilldown;
+                                if (drilldown) { // drill down
+                                    setChart(drilldown.name, drilldown.categories, drilldown.data, drilldown.color);
+                                } else { // restore
+                                    setChart(name, categories, data);
+                                }
+                            }
+                        }
+                    },
+                    dataLabels: {
+                        enabled: true,
+                        style: {
+                            fontWeight: 'bold'
+                        },
+                        formatter: function() {
+                            return this.y +'%';
+                        }
+                    }
+                }
+            },
+            tooltip: {
+                formatter: function() {
+                    var point = this.point,
+                        s = this.x +':<b>'+ this.y +'% market share</b><br/>';
+                    if (point.drilldown) {
+                        s += 'Click to view '+ point.category +' versions';
+                    } else {
+                        s += 'Click to return to browser brands';
+                    }
+                    return s;
+                }
+            },          
+            series: [{
+                name: "Countries",
+                data: data
+            }],
+            exporting: {
+                enabled: false
+            }
+        })
+        .highcharts(); // return chart
+    });
+
+</script>    

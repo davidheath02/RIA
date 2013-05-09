@@ -90,9 +90,15 @@ class LocationsController < ApplicationController
                                  
    end
    def map
-       @users = Location.select("DISTINCT(user_id)")
+       @users = Location.select('DISTINCT(user_id)')
+       @top6_countries = @users.where('country_code = ? OR country_code = ? 
+                            OR country_code = ? OR country_code = ?
+                            OR country_code = ? OR country_code = ?', 
+                            "us","fi", "fr", "cn", "il", "gb")
+       
+         #(:select => "user_id", :conditions => "country_code = us")
    
-       @users_per_location = @users.count(:group => "country_code")
+       @users_per_location = @top6_countries.count(:group => "country_code")
    
     respond_to do |format|
         format.html

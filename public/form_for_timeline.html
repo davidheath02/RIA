@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Timeline Form</title>
+<link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="stylesheet">
+<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+<script src="scriptDrag.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div id="entry">
+	<h1>Insert entry into Timeline</h1>
+	<form action="#" method="#">
+		<fieldset>
+						
+			<label for="company">Select Institution:</label>
+			<input type="search" id="company">
+			<hr />
+			<input type="radio" name="companyMessage" value="message">Use Institutions Description</input>
+			<input type="radio" name="companyMessage" value="mymessage">Generate Message</input><br />
+			<label for="des">Description:</label>
+			<textarea rows="4" column="50" id="des" placeholder="Describe your course?"></textarea>
+			<hr />
+			<input type="radio" name="companyMedia" value="media">Use Institutions Media</input><br />
+			<input type="radio" name="companyMedia" value="mymedia">Upload an Image</input><br />
+			<label for="upload">Choose image to upload:</label>
+			<input type="file" id="upload">
+			<hr />
+			<label for="sdate">Start Date:</label>
+			<input type="date" id="sdate" />
+			
+			<label for="fdate">Completed Date:</label>
+			<input type="date" id="fdate" />
+			<hr />
+			<input type="submit" value="Send entry" />
+			
+		</fieldset>
+	</form>
+</div>
+</div>
+</body>
+</html>

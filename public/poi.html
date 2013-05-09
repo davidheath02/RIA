@@ -1,7 +1,7 @@
 <div id="content"></div>
 
 <script>
-	$.getJSON("/user_industries/industry_stats.json", function(json){
+	$.getJSON("/locations/map.json", function(json){
 		var data = [];
 		for(var i in json) {
 			data.push([i, json[i]]);			
@@ -71,3 +71,4 @@
         });
      });
 </script>
+

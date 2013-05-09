@@ -14,10 +14,3 @@
 //= require jquery_ujs
 //= require_tree .
 
-$(function() {
-
-  $("#user_industries_search input").keyup(function() {
-    $.get($("#user_industries_search").attr("action"), $("#user_industries_search").serialize(), null, "script");
-    return false;
-  });
-});

@@ -91,41 +91,7 @@ class CoSizesController < ApplicationController
         format.json { render json: @users_per_cosize }
     end
    
-     #@count_myself = CoSize.count :all, :conditions => ["no_employees like ?", "Myself Only"]
-     #@count_ten = CoSize.count :all, :conditions => ["no_employees like ?", "1-10 employees"]
-     #@count_fifty = CoSize.count :all, :conditions => ["no_employees like ?", "11-50 employees"]
-     #@count_200 = CoSize.count :all, :conditions => ["no_employees like ?", "51-200 employees"]
-     #@count_500 = CoSize.count :all, :conditions => ["no_employees like ?", "201-500 employees"]
-     #@count_1000 = CoSize.count :all, :conditions => ["no_employees like ?", "501-1000 employees"]
-     #@count_5000 = CoSize.count :all, :conditions => ["no_employees like ?", "1001-5000 employees"]
-     #@count_10000 = CoSize.count :all, :conditions => ["no_employees like ?", "5001-10,000 employees"]
-     #@count_10000plus = CoSize.count :all, :conditions => ["no_employees like ?", "10,001+ employees"]
-     #@count_none = CoSize.count :all, :conditions => ["no_employees like ?", ""]
-     
-     #@types = CoSize.find(params[:no_employees]) 
-     #@no_employees = CoSize.no_employees
-     
-     #.map{|t| t.activity}.uniq
-     #respond_to do |format|
-      #  format.html
-       # format.json { 
-        #  render json: 
-         #   {
-          #    total: @total,
-           #   myself: @count_myself,
-            #  ten: @count_ten,
-             # fifty: @count_fifty,
-              #twohund: @count_200,
-              #fivehund: @count_500,
-              #thousand: @count_1000,
-              #fivethousand: @count_5000,
-              #tenthousand: @count_10000,
-              #tenthousand_plus: @count_10000plus,
-              #missing: @count_none}}
-              
-            
-        
-        
+    
     end
      
   end

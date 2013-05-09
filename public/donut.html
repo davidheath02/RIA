@@ -1,0 +1,144 @@
+<link rel="stylesheet" href="style2.css" />
+
+
+
+<div id = "donut"></div>
+
+<script>
+
+$(function () {
+    
+        var colors = Highcharts.getOptions().colors,
+            categories = ['Accounting and Business', 'General Education', 
+            				'Spanish and Psychology', 'Interests and Achievements',
+            				 'Web Development', 'Other Work Experience'],
+            name = 'Skills Summary',
+            data = [{
+                    y: 18,
+                    color: colors[0],
+                    drilldown: {
+                        name: 'Accounting and Business',
+                        categories: ['Professional Exams', 'Auditing', 'Excel', 'Online Tutorials'],
+                        data: [4, 10, 2, 2],
+                        color: colors[0]
+                    }
+                }, {
+                    y: 36,
+                    color: colors[1],
+                    drilldown: {
+                        name: 'General Education',
+                        categories: ['Spanish', 'Maths', 'Other'],
+                        data: [13, 12, 11],
+                        color: colors[1]
+                    }
+                }, {
+                    y: 29,
+                    color: colors[3],
+                    drilldown: {
+                        name: 'Spanish and Psychology',
+                        categories: ['Spanish', 'Psychology', 'Teaching'],
+                        data: [6, 6, 17],
+                        color: colors[3]
+                    }
+                }, {
+                    y: 3,
+                    color: colors[2],
+                    drilldown: {
+                        name: 'Interests and Achievements',
+                        categories: ['Sport', 'Music', 'Community'],
+                        data: [1, 1, 1],
+                        color: colors[2]
+                    }
+                }, {
+                    y: 8,
+                    color: colors[4],
+                    drilldown: {
+                        name: 'Web Development',
+                        categories: ['Javascript', 'Ruby', 'Databases'],
+                        data: [ 3, 2, 3],
+                        color: colors[4]
+                   }
+                   }, {
+                    y: 6,
+                    color: colors[5],
+                    drilldown: {
+                        name: 'Other Work Experience',
+                        categories: ['Office', 'Horses'],
+                        data: [ 3, 3],
+                        color: colors[5]
+                    }
+                }];
+    
+    
+        // Build the data arrays
+        var browserData = [];
+        var versionsData = [];
+        for (var i = 0; i < data.length; i++) {
+    
+            // add browser data
+            browserData.push({
+                name: categories[i],
+                y: data[i].y,
+                color: data[i].color
+            });
+    
+            // add version data
+            for (var j = 0; j < data[i].drilldown.data.length; j++) {
+                var brightness = 0.2 - (j / data[i].drilldown.data.length) / 5 ;
+                versionsData.push({
+                    name: data[i].drilldown.categories[j],
+                    y: data[i].drilldown.data[j],
+                    color: Highcharts.Color(data[i].color).brighten(brightness).get()
+                });
+            }
+        }
+    
+        // Create the chart
+        $('#donut').highcharts({
+            chart: {
+                type: 'pie'
+            },
+            title: {
+                text: 'Your Skills and Strengths'
+            },
+            yAxis: {
+                title: {
+                    text: 'Total percent'
+                }
+            },
+            plotOptions: {
+                pie: {
+                    shadow: false,
+                    center: ['50%', '50%']
+                }
+            },
+            tooltip: {
+        	    valueSuffix: '%'
+            },
+            series: [{
+                name: 'Skill Area',
+                data: browserData,
+                size: '60%',
+                dataLabels: {
+                    formatter: function() {
+                        return this.y > 5 ? this.point.name : null;
+                    },
+                    color: 'white',
+                    distance: -30
+                }
+            }, {
+                name: 'Skill Breakdown',
+                data: versionsData,
+                size: '80%',
+                innerSize: '60%',
+                dataLabels: {
+                    formatter: function() {
+                        // display only if larger than 1
+                        return this.y > 1 ? '<b>'+ this.point.name +':</b> '+ this.y +'%'  : null;
+                    }
+                }
+            }]
+        });
+    });
+    
+ </script>

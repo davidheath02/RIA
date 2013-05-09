@@ -1,0 +1,119 @@
+<div id="drill2"></div>
+
+<script>
+
+$(function () {
+    
+        var colors = Highcharts.getOptions().colors,
+            categories = ['USA', 'UK', 'China'],
+            name = 'Browser brands',
+            data = [{
+                    y: 90,
+                    color: colors[0],
+                    drilldown: {
+                        name: 'Top Industries in USA',
+                        categories: ['Software', 'I.T Services', 'Internet', 'Marketing', 'Management Consulting'],
+                        data: [31, 27, 12, 10, 10],
+                        color: colors[0]
+                    }
+                }, {
+                    y: 8,
+                    color: colors[1],
+                    drilldown: {
+                        name: 'Top Industries in the UK',
+                        categories: ['I.T Services', 'Software', 'Telecommunications', 'Management Consulting', 'Financial Services'],
+                        data: [3, 2, 1, 1, 1],
+                        color: colors[1]
+                    }
+                }, {
+                    y: 2,
+                    color: colors[2],
+                    drilldown: {
+                        name: 'Top Industries in China',
+                        categories: ['Internet', 'Venture Capital and Private Equity', 'Software', 'Higher Education', 'Telecommunications'],
+                        data: [0.4, 0.2, 0.15, 0.15, 0.1],
+                        color: colors[2]
+                    }
+               
+                }];
+    
+        function setChart(name, categories, data, color) {
+			chart.xAxis[0].setCategories(categories, false);
+			chart.series[0].remove(false);
+			chart.addSeries({
+				name: name,
+				data: data,
+				color: color || 'white'
+			}, false);
+			chart.redraw();
+        }
+    
+        var chart = $('#drill2').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Analyse Industries in each country'
+            },
+            subtitle: {
+                text: 'Click the columns to view the top industries in this country. Click again to view brands.'
+            },
+            xAxis: {
+                categories: categories
+            },
+            yAxis: {
+                title: {
+                    text: 'Total percent'
+                }
+            },
+            plotOptions: {
+                column: {
+                    cursor: 'pointer',
+                    point: {
+                        events: {
+                            click: function() {
+                                var drilldown = this.drilldown;
+                                if (drilldown) { // drill down
+                                    setChart(drilldown.name, drilldown.categories, drilldown.data, drilldown.color);
+                                } else { // restore
+                                    setChart(name, categories, data);
+                                }
+                            }
+                        }
+                    },
+                    dataLabels: {
+                        enabled: true,
+                        color: colors[0],
+                        style: {
+                            fontWeight: 'bold'
+                        },
+                        formatter: function() {
+                            return this.y +'%';
+                        }
+                    }
+                }
+            },
+            tooltip: {
+                formatter: function() {
+                    var point = this.point,
+                        s = this.x +':<b>'+ this.y +'% market share</b><br/>';
+                    if (point.drilldown) {
+                        s += 'Click to view '+ point.category +' versions';
+                    } else {
+                        s += 'Click to return to browser brands';
+                    }
+                    return s;
+                }
+            },
+            series: [{
+                name: name,
+                data: data,
+                color: 'white'
+            }],
+            exporting: {
+                enabled: false
+            }
+        })
+        .highcharts(); // return chart
+    });
+</script>

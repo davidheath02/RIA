@@ -80,4 +80,27 @@ class ConnectionsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  def industry_connections
+  
+  @connections_per_industry = Connection.find_by_sql("SELECT 
+                                              UI.INDUSTRY_NAME
+                                              ,L.COUNTRY_CODE
+                                              ,COUNT(UI.USER_ID) 
+                                              ,ROUND(AVG(CO.NUM_CONNECTIONS), 0) 
+                                            FROM USER_INDUSTRIES UI
+                                            INNER JOIN LOCATIONS L ON UI.USER_ID = L.USER_ID
+                                            INNER JOIN CONNECTIONS CO ON CO.USER_ID = UI.USER_ID
+                                            WHERE COUNTRY_CODE NOT IN('MISSING_CODE')
+                                            AND COUNTRY_CODE IN('us', 'gb')
+                                            GROUP BY UI.INDUSTRY_NAME, L.COUNTRY_CODE
+                                            ORDER BY COUNT(UI.USER_ID) DESC
+                                            limit 12")
+  
+  respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @connections_per_industry}
+    end
+  
+  end
+ 
 end

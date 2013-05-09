@@ -86,19 +86,7 @@ class UserIndustriesController < ApplicationController
       format.json { head :no_content }
     end
   end
-  def industry_stats
-    @total = UserIndustry.count :all
-    @count_industries = UserIndustry.select("DISTINCT(industry_name)").count
-    @users =  UserIndustry.select("DISTINCT(user_id)")
-    @users_per_industry = @users.count(:group => "industry_name")
-    
-     respond_to do |format|
-        format.html
-        format.json { render json: @users_per_industry }
-    end
-  end
-  
-  def search
+   def search
     @user_industries = UserIndustry.search(params[ :search ]).all 
      
      #order(sort_column + " " + sort_direction).paginate(:per_page => 20, :page => params[:page])
@@ -108,5 +96,76 @@ class UserIndustriesController < ApplicationController
     end
   end
   
+  
+  def industry_stats
+    @total = UserIndustry.count :all
+    @count_industries = UserIndustry.select("DISTINCT(industry_name)").count
+    
+    @users =  UserIndustry.select("DISTINCT(user_id)")
+    
+    
+    @top5_industries_us = UserIndustry.find_by_sql("SELECT 
+                                        UI.INDUSTRY_NAME
+                                        ,L.COUNTRY_CODE
+                                        ,COUNT(UI.USER_ID)
+                                      FROM USER_INDUSTRIES UI
+                                      INNER JOIN LOCATIONS L ON UI.USER_ID = L.USER_ID
+                                      WHERE COUNTRY_CODE NOT IN('MISSING_CODE')
+                                      AND COUNTRY_CODE IN('us')
+                                      GROUP BY UI.INDUSTRY_NAME, L.COUNTRY_CODE
+                                      ORDER BY COUNT(UI.USER_ID) DESC
+                                      LIMIT 5")
+                                      
+                          
+                         
+  
+     respond_to do |format|
+        format.html
+        format.json { render :json => {:user_industry => @top5_industries_us
+                                        #, 
+                                       #:user_industry => @top5_industries_gb,
+                                       #:user_industry => @top5_industries_il
+                                        }}
+    end
+  end
+  
+  def gb_industry
+      @top5_industries_gb = UserIndustry.find_by_sql("SELECT 
+                                        UI.INDUSTRY_NAME
+                                        ,L.COUNTRY_CODE
+                                        ,COUNT(UI.USER_ID)
+                                      FROM USER_INDUSTRIES UI
+                                      INNER JOIN LOCATIONS L ON UI.USER_ID = L.USER_ID
+                                      WHERE COUNTRY_CODE NOT IN('MISSING_CODE')
+                                      AND COUNTRY_CODE IN('gb')
+                                      GROUP BY UI.INDUSTRY_NAME, L.COUNTRY_CODE
+                                      ORDER BY COUNT(UI.USER_ID) DESC
+                                      LIMIT 5")
+                                      
+      respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @top5_industries_gb }
+    end
+ end
+  
+def il_industry
+@top5_industries_il = UserIndustry.find_by_sql("SELECT 
+                                        UI.INDUSTRY_NAME
+                                        ,L.COUNTRY_CODE
+                                        ,COUNT(UI.USER_ID)
+                                      FROM USER_INDUSTRIES UI
+                                      INNER JOIN LOCATIONS L ON UI.USER_ID = L.USER_ID
+                                      WHERE COUNTRY_CODE NOT IN('MISSING_CODE')
+                                      AND COUNTRY_CODE IN('il')
+                                      GROUP BY UI.INDUSTRY_NAME, L.COUNTRY_CODE
+                                      ORDER BY COUNT(UI.USER_ID) DESC
+                                      LIMIT 5")
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @top5_industries_il }
+    end
+                           
+
+end
 
 end

@@ -1,0 +1,86 @@
+<div id = "column_line_pie">
+	
+</div>
+
+<script>
+
+$(function () {
+        $('#column_line_pie').highcharts({
+            chart: {
+            },
+            title: {
+                text: 'Company Types Across 5 Industries'
+            },
+            xAxis: {
+                categories: ['Law', 'Computer Games', 'Accounting', 'Recruiting', 'Design']
+            },
+            tooltip: {
+                formatter: function() {
+                    var s;
+                    if (this.point.name) { // the pie chart
+                        s = ''+
+                            this.point.name +': '+ this.y +' Companies';
+                    } else {
+                        s = ''+
+                            this.x  +': '+ this.y;
+                    }
+                    return s;
+                }
+            },
+            labels: {
+                items: [{
+                    html: 'Total No. of Companies',
+                    style: {
+                        left: '40px',
+                        top: '8px',
+                        color: 'black'
+                    }
+                }]
+            },
+            series: [{
+                type: 'column',
+                name: 'Private',
+                data: [29, 53, 13, 90, 50]
+            }, {
+                type: 'column',
+                name: 'Public Company',
+                data: [5, 19, 5, 21, 13]
+            }, {
+                type: 'column',
+                name: 'Partnership',
+                data: [48, 3, 31, 9, 4]
+            }, {
+                type: 'spline',
+                name: 'Average',
+                data: [27, 25, 16, 40, 22],
+                marker: {
+                	lineWidth: 2,
+                	lineColor: Highcharts.getOptions().colors[3],
+                	fillColor: 'white'
+                }
+            }, {
+                type: 'pie',
+                name: 'Total Companies',
+                data: [{
+                    name: 'Private',
+                    y: 235,
+                    color: Highcharts.getOptions().colors[0] // Jane's color
+                }, {
+                    name: 'Public',
+                    y: 63,
+                    color: Highcharts.getOptions().colors[1] // John's color
+                }, {
+                    name: 'Partnership',
+                    y: 95,
+                    color: Highcharts.getOptions().colors[2] // Joe's color
+                }],
+                center: [100, 80],
+                size: 100,
+                showInLegend: false,
+                dataLabels: {
+                    enabled: false
+                }
+            }]
+        });
+    });
+</script>    

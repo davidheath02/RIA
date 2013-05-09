@@ -1,0 +1,82 @@
+<div id="dual"></div>
+
+<script>
+$(function () {
+        $('#dual').highcharts({
+            chart: {
+                zoomType: 'xy'
+            },
+            title: {
+                text: 'Average Number of Connections per User in the Top 12 Industries'
+            },
+            subtitle: {
+                text: 'Source: LinkedIn.com'
+            },
+            xAxis: [{
+                categories: ['Software', 'I.T Services', 'Internet', 'Marketing', 'Management Consulting', 'Telecoms',
+                    'Financial Services', 'Private Equity', 'Law', 'Real Estate', 'Computer Networking', 'Investment Management']
+            }],
+            yAxis: [{ // Primary yAxis
+                labels: {
+                    format: '{value}',
+                    style: {
+                        color: '#89A54E'
+                    }
+                },
+                title: {
+                    text: 'Average Number of Connections',
+                    style: {
+                        color: '#89A54E'
+                    }
+                }
+            }, { // Secondary yAxis
+                title: {
+                    text: 'No. of Users',
+                    style: {
+                        color: '#4572A7'
+                    }
+                },
+                labels: {
+                    format: '{value}',
+                    style: {
+                        color: '#4572A7'
+                    }
+                },
+                opposite: true
+            }],
+            tooltip: {
+                shared: true
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'left',
+                x: 120,
+                verticalAlign: 'top',
+                y: 100,
+                floating: true,
+                backgroundColor: '#FFFFFF'
+            },
+            series: [{
+                name: 'No. of Users',
+                color: '#4572A7',
+                type: 'column',
+                yAxis: 1,
+                data: [1092, 949, 428, 362, 350, 260, 247 , 159, 141, 140, 119, 117],
+                tooltip: {
+                    valueSuffix: ''
+                }
+    
+            }, {
+                name: 'Average Connections',
+                color: '#89A54E',
+                type: 'spline',
+                
+                data: [252, 238, 314, 249, 249, 184, 207, 319, 182, 141, 191, 184],
+                tooltip: {
+                    valueSuffix: ''
+                }
+            }]
+        });
+    });
+    
+</script>

@@ -59,9 +59,9 @@ var ajax_load= (function(e){
 	
  });
  
-
-
 $("#menu a").on("click", ajax_load);
 $("#menu a.main").trigger("click");
+
+
 
 
